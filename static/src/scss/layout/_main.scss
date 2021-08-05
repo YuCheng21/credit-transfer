@@ -1,0 +1,5 @@
+main {
+  min-height: calc(100% - #{$nav-height} - #{$footer-height});
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

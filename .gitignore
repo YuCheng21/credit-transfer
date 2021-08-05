@@ -1,0 +1,8 @@
+.idea/
+venv/
+doc/
+__pycache__/
+upload/
+static/node_modules
+config.env
+/static/dist/

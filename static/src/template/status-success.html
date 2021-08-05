@@ -1,0 +1,46 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container py-5">
+        <div class="row gy-3">
+            <div class="col-12 text-center">
+                <h2 class="text-primary fw-bold">{{ message }}</h2>
+            </div>
+            <div class="col-12 text-center">
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">回首頁</a>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    <script>
+        {% if danger is defined and danger == true%}
+            document.querySelector('h2').classList.remove('text-primary')
+            document.querySelector('h2').classList.add('text-danger')
+        {% endif %}
+    </script>
+{% endblock %}

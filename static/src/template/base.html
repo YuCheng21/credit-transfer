@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <title>{% block title %}Flask App{% endblock %} | 課程抵免申請系統 </title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/src/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/src/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/src/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/static/src/img/favicon/site.webmanifest">
+        <link rel="mask-icon" href="/static/src/img/favicon/safari-pinned-tab.svg" color="#198754">
+        <meta name="msapplication-TileColor" content="#198754">
+        <meta name="theme-color" content="#ffffff">
+    {% endblock %}
+</head>
+<body>
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-primary ds-900">
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="navbar-brand d-flex align-items-center ds-100 py-0 hv-scale">
+                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="40" height="40"
+                     viewBox="0 0 226 226"
+                     style=" fill:#000000;">
+                    <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                       stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                       font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                       style="mix-blend-mode: normal">
+                        <path d="M0,226v-226h226v226z" fill="none"></path>
+                        <g fill="#ffffff">
+                            <path d="M31.64,9.04c-12.65953,0 -22.6,9.94047 -22.6,22.6v122.04c0,12.65953 9.94047,22.6 22.6,22.6h122.04c12.65953,0 22.6,-9.94047 22.6,-22.6v-122.04c0,-2.26 -0.38844,-4.52 -0.8475,-6.78l-89.12875,99.01625l-43.7875,-39.40875l5.79125,-6.78l37.5725,33.0525l84.4675,-94.0725c-4.06094,-4.52 -9.8875,-7.6275 -16.6675,-7.6275zM185.32,49.72v108.48c0,14.91953 -12.20047,27.12 -27.12,27.12h-108.48v9.04c0,12.65953 9.94047,22.6 22.6,22.6h122.04c12.65953,0 22.6,-9.94047 22.6,-22.6v-122.04c0,-12.65953 -9.94047,-22.6 -22.6,-22.6z"></path>
+                        </g>
+                    </g>
+                </svg>
+                <span class="fs-1 fw-bold ">課程抵免申請系統</span>
+            </a>
+            {% block navitem %}
+
+            {% endblock %}
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block footer %}
+    <footer class="bg-primary d-flex justify-content-center align-items-center">
+        <span class="text-white ds-100">
+            &copy; Copyright 2021 by 國立高雄科技大學電機工程系 |
+            Illustration by <a href="https://storyset.com/" class="text-decoration-none text-white" target="_blank">Storyset</a>
+        </span>
+    </footer>
+{% endblock %}
+
+</body>
+</html>

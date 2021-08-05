@@ -1,0 +1,89 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container">
+        <div class="row gy-3">
+            <section class="col-6">
+                <button class="btn btn-create rounded-btn btn-bigger border border-5 border-dark hv-scale shadow">
+                    <span class="display-3 text-white fw-bold ds-500">新增表單</span>
+                </button>
+            </section>
+            <section class="col-6">
+                <button class="btn btn-read rounded-btn btn-bigger border border-5 border-dark hv-scale shadow">
+                    <span class="display-3 text-white fw-bold ds-500">查詢表單</span>
+                </button>
+            </section>
+            <section class="col-6">
+                <button class="btn btn-update rounded-btn btn-bigger border border-5 border-dark hv-scale shadow">
+                    <span class="display-3 text-white fw-bold ds-500">修改表單</span>
+                </button>
+            </section>
+            <section class="col-6">
+                <button class="btn btn-delete rounded-btn btn-bigger border border-5 border-dark hv-scale shadow">
+                    <span class="display-3 text-white fw-bold ds-500">刪除表單</span>
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal fade" id="infoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-info-circle me-2"></i><span>提示</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    const msg_flash = '{{ message }}';
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <script>
+        const url_create = "{{ url_for('create') }}"
+        const url_read = "{{ url_for('read') }}"
+        const url_update = "{{ url_for('update') }}"
+        const url_delete = "{{ url_for('delete') }}"
+    </script>
+{% endblock %}

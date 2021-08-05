@@ -1,0 +1,29 @@
+.btn-transfer-a {
+  background-color: rgba(13, 110, 253, 0.3);
+}
+
+.btn-transfer-a-bg {
+  height: 100%;
+  background-image: url("~@src/img/transfer-a.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.btn-transfer-b {
+  background-color: rgba(255, 193, 7, 0.3);
+}
+
+.btn-transfer-b-bg {
+  height: 100%;
+  background-image: url("~@src/img/transfer-b.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}

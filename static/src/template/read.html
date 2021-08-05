@@ -1,0 +1,61 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container py-3">
+        <h1 class="text-center fw-bold bg-info text-white w-100">
+            <span class="ds-100"><i class="fas fa-search me-2"></i>查詢表單</span>
+        </h1>
+        <form class="row g-3" action="{{ url_for('submit_read') }}" id="form" method="post"
+              enctype="multipart/form-data">
+            <div class="col-12">
+                <label class="form-label col-form-label-lg" for="form-id">表單編號：</label>
+                <input class="form-control form-control-lg" type="text" id="form-id" name="form-id"
+                       placeholder="請輸入表單編號">
+            </div>
+            <div class="col-12">
+                <label class="form-label col-form-label-lg" for="form-pwd">表單密碼：</label>
+                <input class="form-control form-control-lg" type="password" id="pwd" name="pwd" placeholder="請輸入表單密碼">
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary btn-lg w-100" type="button" id="send">
+                    <i class="fas fa-paper-plane me-2"></i>送出
+                </button>
+            </div>
+        </form>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    const msg_flash = '{{ message }}';
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}

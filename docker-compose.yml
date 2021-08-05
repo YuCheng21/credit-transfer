@@ -1,0 +1,21 @@
+version: '3'
+services:
+  server:
+    build: .
+    ports:
+      - '20020:8080'
+    volumes:
+      - .:/code
+    links:
+      - "database:db"
+    env_file:
+      - config.env
+  database:
+    image: mariadb:10.5.10
+    restart: always
+    env_file:
+      - config.env
+    expose:
+      - '3306'
+    volumes:
+      - "./db-script.sql:/docker-entrypoint-initdb.d/1.sql"

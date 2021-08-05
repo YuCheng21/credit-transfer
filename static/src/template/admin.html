@@ -1,0 +1,106 @@
+{% extends "template/base-admin.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block navitem %}
+    <div class="d-block text-end">
+        <a href="{{ url_for('index') }}"
+           class="fs-4 text-white text-decoration-none btn btn-primary border border-dark me-1">系統首頁
+        </a>
+        <button class="fs-4 btn btn-warning border border-dark me-1" type="button"
+                data-bs-toggle="modal" data-bs-target="#infoModal">
+            <span>{{ db_admin['real_name'] }}</span>
+        </button>
+        <a href="{{ url_for('admin_logout') }}"
+           class="fs-4 text-white text-decoration-none btn btn-danger border border-dark">登出
+        </a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <main class="container py-3">
+        <div>
+            <h1 class="text-center bg-secondary text-white rounded-2">課程抵免申請表單審核</h1>
+            <table class="table table-sm text-center align-middle fs-5" data-toggle="table"
+                   data-search="true" data-sort-name="date" data-sort-order="desc"
+                   data-pagination="true" data-page-size="5" data-page-list="[5, 10, 25, All]"
+                   data-locale="zh-TW">
+                <thead>
+                <tr class="table-light">
+                    <th data-sortable="true" data-field="date">表單編號</th>
+                    <th>姓名</th>
+                    <th data-sortable="true">學號</th>
+                    <th data-sortable="true">審核</th>
+                    <th>表單</th>
+                </tr>
+                </thead>
+                {% for index in db_form %}
+                    <tr>
+                        <td>{{ index['id'] }}</td>
+                        <td>{{ index['stu_name'] }}</td>
+                        <td>{{ index['stu_id'] }}</td>
+                        {% if index['editable'] == 1 %}
+                            <td>
+                                <a class="btn btn-danger"
+                                   href="{{ url_for('admin_fetch', form_id=index['id']) }}">未審核</a>
+                            </td>
+                        {% elif index['editable'] == 0 %}
+                            <td>
+                                <a class="btn btn-primary"
+                                   href="{{ url_for('admin_fetch', form_id=index['id']) }}">已審核</a>
+                            </td>
+                        {% endif %}
+                        <td>
+                            <a class="btn btn-info"
+                               href="{{ url_for('form_download', form_id=index['id']) }}">下載</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+
+    <div class="modal fade" id="infoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form class="modal-content" id="form" method="post" enctype="multipart/form-data"
+                  action="{{ url_for('admin_info_submit') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-info-circle me-2"></i><span>帳號資訊</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gy-2">
+                        <div class="col-12">
+                            <div class="input-group input-group-lg">
+                                <label for="username" class="input-group-text">姓名</label>
+                                <input id="username" name="username" type="text" class="form-control"
+                                       placeholder="姓名" value="{{ db_admin['real_name'] }}">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group input-group-lg">
+                                <label for="email-address" class="input-group-text">信箱</label>
+                                <input id="email-address" name="email-address" type="text" class="form-control"
+                                       placeholder="信箱" value="{{ db_admin['email'] }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="send">確認提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+{% endblock %}

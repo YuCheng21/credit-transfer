@@ -1,0 +1,88 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container">
+        <div class="row gy-3">
+
+            <section class="col-12">
+                <a href="{{ url_for('transfer_a') }}" class="text-decoration-none">
+                    <div class="btn-transfer-a border border-5 border-dark shadow rounded-btn shadow hv-scale">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="btn-transfer-a-bg d-flex align-items-center justify-content-center">
+                                    <span class="text-center display-3 fw-bold text-white ts-500-xl">學分抵修申請</span>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="card-body text-black fs-3">
+                                    <h2>適用對象</h2>
+                                    <ul>
+                                        <li>本年度新生（含本校重考入學生）</li>
+                                        <li>學碩士一貫生</li>
+                                        <li>交換生</li>
+                                        <li>轉學生</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </section>
+
+            <section class="col-12">
+                <a href="{{ url_for('transfer_b') }}" class="text-decoration-none">
+                    <div class="btn-transfer-b border border-5 border-dark shadow rounded-btn shadow hv-scale">
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="btn-transfer-b-bg d-flex align-items-center justify-content-center">
+                                    <span class="text-center display-3 fw-bold text-white ts-500-xl">學分抵充申請</span>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="card-body text-black fs-3">
+                                    <h2>適用對象</h2>
+                                    <ul>
+                                        <li>本校轉系生</li>
+                                        <li>復學生</li>
+                                        <li>新舊課程交替重補修學生</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </section>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    <script>
+        const url_transfer_a = "{{ url_for('transfer_a') }}"
+        const url_transfer_b = "{{ url_for('transfer_b') }}"
+
+    </script>
+{% endblock %}

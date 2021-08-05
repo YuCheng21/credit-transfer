@@ -1,0 +1,26 @@
+$(document).ready(function () {
+    $('#stu-name').attr('disabled', true);
+    $('#stu-id').attr('disabled', true);
+    $('#stu-tel').attr('disabled', true);
+    $(`input[name='edu-sys']`).attr('disabled', true);
+    $(`input[name='campus']`).attr('disabled', true);
+    $('#department').attr('disabled', true);
+    $('#grade').attr('disabled', true);
+    $('#class').attr('disabled', true);
+    $(`input[name='stu-type']`).attr('disabled', true);
+    $('#stu-type-school').attr('disabled', true);
+    $('#stu-type-department').attr('disabled', true);
+    $('#stu-type-other').attr('disabled', true);
+    $.each(db_trans, function (item, index) {
+        $(`input[name='sbj-${item + 1}-getTerm']`).attr('disabled', true);
+        $(`input[name='sbj-${item + 1}-getName']`).attr('disabled', true);
+        $(`input[name='sbj-${item + 1}-getCredit']`).attr('disabled', true);
+        $(`input[name='sbj-${item + 1}-getScore']`).attr('disabled', true);
+        $(`input[name='sbj-${item + 1}-setTerm']`).attr('disabled', true);
+        $(`input[name='sbj-${item + 1}-setName']`).attr('disabled', true);
+        $(`input[name='sbj-${item + 1}-setCredit']`).attr('disabled', true);
+        $(`select[name='sbj-${item + 1}-setType']`).attr('disabled', true);
+        $(`select[name='sbj-${item + 1}-setVerify']`).attr('disabled', true);
+    })
+    $(`input[name='file']`).attr('disabled', true);
+})

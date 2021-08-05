@@ -1,0 +1,47 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container py-3">
+        {% if status_code == 200 %}
+            <div class="row">
+                <div class="col-12 d-flex flex-column align-items-center">
+                    <h2 class="text-primary fw-bold">成功提交表單！</h2>
+                    <p class="fs-3">你的表單編號：</p>
+                    <p class="fs-1">{{ form_id }}</p>
+                    <p>請牢記你的<b class="text-danger">表單編號</b>與<b class="text-danger">表單密碼</b>，日後修改表單時將用來確認身分。</p>
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">回首頁</a>
+                </div>
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    <script>
+        const url_index = "{{ url_for('index') }}"
+        const status_code = {{ status_code }}
+    </script>
+{% endblock %}

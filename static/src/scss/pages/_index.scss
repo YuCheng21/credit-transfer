@@ -1,0 +1,39 @@
+.btn-create {
+  background-image: url("~@src/img/create.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(32, 201, 151, 0.3);
+  background-blend-mode: overlay;
+  background-attachment: scroll;
+  background-position: center;
+}
+
+.btn-read {
+  background-image: url("~@src/img/read.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(13, 110, 253, 0.3);
+  background-blend-mode: overlay;
+  background-attachment: scroll;
+  background-position: center;
+}
+
+.btn-update {
+  background-image: url("~@src/img/update.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 193, 7, 0.3);
+  background-blend-mode: overlay;
+  background-attachment: scroll;
+  background-position: center;
+}
+
+.btn-delete {
+  background-image: url("~@src/img/delete.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgba(220, 53, 69, 0.3);
+  background-blend-mode: overlay;
+  background-attachment: scroll;
+  background-position: center;
+}

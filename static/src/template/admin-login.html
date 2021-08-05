@@ -1,0 +1,62 @@
+{% extends "template/base-admin.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block navitem %}
+{% endblock %}
+
+{% block content %}
+    <main class="container py-3 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card border-secondary">
+                    <div class="card-header bg-secondary">
+                        <h1 class="text-center fw-bold text-white w-100 ds-100 mb-0">管理員登入</h1>
+                    </div>
+                    <div class="card-body">
+                        <form class="row g-3" action="" id="form" method="post" enctype="multipart/form-data">
+                            <div class="col-12">
+                                <div class="input-group input-group-lg">
+                                    <label for="username" class="input-group-text">帳號</label>
+                                    <input id="username" name="username" type="text" class="form-control"
+                                           placeholder="請輸入帳號">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group input-group-lg">
+                                    <label for="pwd" class="input-group-text">密碼</label>
+                                    <input id="pwd" name="pwd" type="password" class="form-control" placeholder="請輸入密碼">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary btn-lg w-100" type="button" id="send">送出</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+    <script>
+        const url_admin_login = '{{ url_for(url_admin_login) }}';
+    </script>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    const msg_flash = '{{ message }}';
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}

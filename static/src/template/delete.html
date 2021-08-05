@@ -1,0 +1,82 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container py-3">
+        <h1 class="text-center fw-bold bg-danger text-white w-100">
+            <span class="ds-100"><i class="fas fa-trash-alt me-2"></i>刪除表單</span>
+        </h1>
+        <form class="row g-3" action="{{ url_for('submit_delete') }}" id="form" method="post"
+              enctype="multipart/form-data">
+            <div class="col-12">
+                <label class="form-label col-form-label-lg" for="form-id">表單編號：</label>
+                <input class="form-control form-control-lg" type="text" id="form-id" name="form-id"
+                       placeholder="請輸入表單編號">
+            </div>
+            <div class="col-12">
+                <label class="form-label col-form-label-lg" for="form-pwd">表單密碼：</label>
+                <input class="form-control form-control-lg" type="password" id="pwd" name="pwd" placeholder="請輸入表單密碼">
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary btn-lg w-100" type="button" id="first-send"
+                        data-bs-toggle="modal" data-bs-target="#infoModal">
+                    <i class="fas fa-paper-plane me-2"></i>送出
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <div class="modal fade" id="infoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-info-circle me-2"></i><span>提示</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    確定刪除表單嗎
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="send">確認提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    const msg_flash = '{{ message }}';
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}

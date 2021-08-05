@@ -1,0 +1,21 @@
+{% extends "template/transfer-b.html" %}
+
+{% block file_upload %}
+    <hr class="mb-0">
+    <div class="col-12 fs-3">
+        <span>歷年成績單 :</span>
+        {% if db_info['file_name'] is not none %}
+            <a href="{{ url_for('transcript', file_name=db_info['file_name'] ) }}" target="_blank">{{ db_info['file_name'] }}</a>
+        {% else %}
+            <span>沒有上傳成績單</span>
+        {% endif %}
+        <div class="col-12">
+            <input class="form-control form-control-lg" type="file" accept="application/pdf" name="file">
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block modal %}
+    確定要提交修改嗎？
+{% endblock %}

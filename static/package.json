@@ -1,0 +1,53 @@
+{
+  "name": "credit-transfer",
+  "version": "1.0.0",
+  "description": "credit transfer application system.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./dist/*",
+    "watch": "npm run clean && cross-env NODE_ENV=development webpack --watch",
+    "develop": "npm run clean && cross-env NODE_ENV=development webpack",
+    "deploy": "npm run clean && cross-env NODE_ENV=production webpack"
+  },
+  "author": "Yu-Cheng Feng",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "browserslist": "^4.16.6",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "cssnano": "^5.0.6",
+    "file-loader": "^6.2.0",
+    "glob": "^7.1.7",
+    "glob-all": "^3.2.1",
+    "html-webpack-plugin": "^5.3.2",
+    "image-webpack-loader": "^7.0.1",
+    "mini-css-extract-plugin": "^2.1.0",
+    "node-sass": "^6.0.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "postcss": "^8.3.5",
+    "postcss-loader": "^6.1.1",
+    "purgecss-webpack-plugin": "^4.0.3",
+    "rimraf": "^3.0.2",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.43.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.6",
+    "@babel/runtime-corejs3": "^7.14.7",
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "@popperjs/core": "^2.9.2",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.0.2",
+    "bootstrap-table": "^1.18.3",
+    "file-saver": "^2.0.5",
+    "jquery": "^3.6.0"
+  }
+}

@@ -1,0 +1,340 @@
+{% extends "template/base.html" %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navitem %}
+
+{% endblock %}
+
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <main class="container py-3">
+        {% block top_button %}{% endblock %}
+        {% block header %}
+            <h1 class="text-center fw-bold bg-info text-white w-100">
+                <span class="ds-100">學分抵修申請</span>
+            </h1>
+        {% endblock %}
+        <form class="row gy-3" id="form" method="post" enctype="multipart/form-data">
+            <input name="type" type="hidden" value="{{ form_type }}">
+            <div class="col-4">
+                <div class="input-group">
+                    <label for="stu-name" class="input-group-text">姓名</label>
+                    <input id="stu-name" name="stu-name" type="text" class="form-control" placeholder="輸入姓名">
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="input-group">
+                    <label for="stu-id" class="input-group-text">學號</label>
+                    <input id="stu-id" name="stu-id" type="text" class="form-control" placeholder="輸入學號">
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="input-group">
+                    <label for="stu-tel" class="input-group-text">電話</label>
+                    <input id="stu-tel" name="stu-tel" type="text" class="form-control" placeholder="輸入電話">
+                </div>
+            </div>
+
+            <div class="col-12">
+                <span>日間部學制：</span>
+                <input type="radio" name="edu-sys" id="edu-sys-0" value="" class="check-default" checked>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="edu-sys-1" class="form-check-input" name="edu-sys" value="1">
+                    <label for="edu-sys-1" class="form-check-label">五專</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="edu-sys-2" class="form-check-input" name="edu-sys" value="2">
+                    <label for="edu-sys-2" class="form-check-label">二技</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="edu-sys-3" class="form-check-input" name="edu-sys" value="3">
+                    <label for="edu-sys-3" class="form-check-label">四技</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="edu-sys-4" class="form-check-input" name="edu-sys" value="4">
+                    <label for="edu-sys-4" class="form-check-label">碩士班</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="edu-sys-5" class="form-check-input" name="edu-sys" value="5">
+                    <label for="edu-sys-5" class="form-check-label">博士班</label>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <span>校區：</span>
+                <input type="radio" name="campus" id="campus-0" value="" class="check-default" checked>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="campus" id="campus-1" class="form-check-input" value="1">
+                    <label for="campus-1" class="form-check-label">建工校區</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="campus" id="campus-2" class="form-check-input" value="2">
+                    <label for="campus-2" class="form-check-label">燕巢校區</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="campus" id="campus-3" class="form-check-input" value="3">
+                    <label for="campus-3" class="form-check-label">第一校區</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="campus" id="campus-4" class="form-check-input" value="4">
+                    <label for="campus-4" class="form-check-label">楠梓校區</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="campus" id="campus-5" class="form-check-input" value="5">
+                    <label for="campus-5" class="form-check-label">旗津校區</label>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="input-group">
+                    <span class="input-group-text">現就讀科系：</span>
+                    <input class="form-control" type="text" id="department" name="department">
+                    <label class="input-group-text" for="department">系</label>
+                    <input type="text" class="form-control" id="grade" name="grade">
+                    <label for="grade" class="input-group-text">年級</label>
+                    <input type="text" class="form-control" id="class" name="class">
+                    <label for="class" class="input-group-text">班</label>
+                </div>
+            </div>
+            <hr class="mb-0">
+            {% block stu_type %}
+                <div class="col-12">
+                    <span>學生身分別：</span>
+                </div>
+                <input type="radio" name="stu-type" value="" id="stu-type-0" class="check-default" checked>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="radio" name="stu-type" id="stu-type-1" value="1">
+                        </div>
+                        <label class="input-group-text" for="stu-type-1">本年度新生（含本校重考入學生）</label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="radio" name="stu-type" id="stu-type-2" value="4">
+                        </div>
+                        <label for="stu-type-2" class="input-group-text">學碩士一貫生</label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="radio" name="stu-type" id="stu-type-3" value="2">
+                        </div>
+                        <label for="stu-type-3" class="input-group-text">交換生</label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="radio" name="stu-type" id="stu-type-4" value="3">
+                        </div>
+                        <label for="stu-type-school" class="input-group-text">轉學生，原學校：</label>
+                        <input type="text" class="form-control" id="stu-type-school" name="stu-type-school">
+                        <label for="stu-type-department" class="input-group-text">原科系所別</label>
+                        <input type="text" class="form-control" id="stu-type-department" name="stu-type-department">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <input class="form-check-input" type="radio" name="stu-type" id="stu-type-5" value="5">
+                        </div>
+                        <label for="stu-type-other" class="input-group-text">其他：</label>
+                        <input type="text" class="form-control" id="stu-type-other" name="stu-type-other">
+                    </div>
+                </div>
+            {% endblock %}
+            <hr class="mb-0">
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered">
+                    <tr class="text-center table-light">
+                        <th></th>
+                        <th colspan="4">已修習及格科目</th>
+                        <th colspan="5">擬抵修本校科目</th>
+                    </tr>
+                    <tr class="text-center table-light">
+                        <th>#</th>
+                        <th>學年度學期</th>
+                        <th>科目名稱</th>
+                        <th>學分</th>
+                        <th>成績</th>
+                        <th>學年度學期</th>
+                        <th>科目名稱</th>
+                        <th>學分</th>
+                        <th>修別</th>
+                        <th>審核結果</th>
+                    </tr>
+                    {% for n in range(1,7) %}
+                        <tr id="sbj-{{ n }}">
+                            <th class="align-middle">
+                                {{ n }}
+                                <input name="sbj-{{ n }}-index" type="hidden" value="{{ n }}">
+                            </th>
+                            <td>
+                                <input type="number" class="form-control sbj-get-term w-auto" min="0" max="9999"
+                                       name="sbj-{{ n }}-getTerm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control sbj-get-name w-auto" size="20"
+                                       name="sbj-{{ n }}-getName">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control sbj-get-credit w-auto" min="0" max="9"
+                                       name="sbj-{{ n }}-getCredit">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control sbj-get-score w-auto" min="0" max="999"
+                                       name="sbj-{{ n }}-getScore">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control sbj-set-term w-auto" min="0" max="9999"
+                                       name="sbj-{{ n }}-setTerm">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control sbj-set-name w-auto" size="20"
+                                       name="sbj-{{ n }}-setName">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control sbj-set-credit w-auto" min="0" max="9"
+                                       name="sbj-{{ n }}-setCredit">
+                            </td>
+                            <td>
+                                <select class="form-select sbj-set-type w-auto" name="sbj-{{ n }}-setType">
+                                    <option value="0" selected></option>
+                                    <option value="1">共同必修</option>
+                                    <option value="2">通識科目</option>
+                                    <option value="3">專業科目必修</option>
+                                    <option value="4">專業科目選修</option>
+                                    {% block trans_b %}
+                                        <option value="5">專業科目外系選修</option>
+                                    {% endblock %}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select sbj-set-verify w-auto" name="sbj-{{ n }}-setVerify" disabled>
+                                    <option value="0" selected></option>
+                                    <option value="1">同意</option>
+                                    <option value="2">不同意</option>
+                                </select>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% block file_upload %}
+                <hr class="mb-0">
+                <div class="col-12 fs-3">
+                    <span>歷年成績單 :</span>
+
+                </div>
+                <div class="col-12">
+                    <input class="form-control form-control-lg" type="file" accept="application/pdf" name="file">
+                </div>
+            {% endblock %}
+            {% block btn_send %}
+                <hr class="mb-0">
+                <div class="col-12">
+                    <button class="btn btn-primary w-100" type="button" data-bs-toggle="modal"
+                            data-bs-target="#infoModal" id="first-send">
+                        <span class="fs-3">
+                            <i class="fas fa-paper-plane me-2"></i>送出
+                        </span>
+                    </button>
+                </div>
+            {% endblock %}
+        </form>
+        {% block notes %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <h3>注意事項</h3>
+                    <ul>
+                        <li>填表前請詳閱本校「學生學分抵免要點」。</li>
+                        <li>學分抵免須秉持「不得重複抵免」規定辦理。</li>
+                        <li>學生於前就讀學校所規定修業期間內所修讀之學分，並認定符合畢業學分數並授予學位（或核發學歷）者，如再修讀任一學制之學位，其學分不得再予以抵免。</li>
+                        <li>
+                            大學部及專科部入學新生核可抵免之課程學分數，以應修畢業總學分數1/2為上限，轉學生核可抵免之學分數以其應修畢業學分數的3/5為上限，但曾在本校大學部及專科部肄業之學生，入學修讀學士學位及副學士學位者，核可之抵免學分數不受限。
+                        </li>
+                        <li>研究生核可之抵免學分數不得超過應修畢業學分1/2（不含論文），學碩士一貫學生2/3（不含論文）。</li>
+                    </ul>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+
+    <div class="modal fade" id="infoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-info-circle me-2"></i><span>提示</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% block modal %}
+                        <div class="row gy-2">
+                            <div class="col-12">
+                                <div class="input-group input-group-lg">
+                                    <label for="pwd" class="input-group-text">設定密碼</label>
+                                    <input id="pwd" name="pwd" type="password" class="form-control"
+                                           placeholder="輸入用於日後操作表單的密碼">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group input-group-lg">
+                                    <label for="pwd-confirm" class="input-group-text">確認密碼</label>
+                                    <input id="pwd-confirm" name="pwd-confirm" type="password" class="form-control"
+                                           placeholder="請再次輸入密碼">
+                                </div>
+                            </div>
+                        </div>
+                        <p class="fs-6">提交表單前，請設定<b class="text-danger">表單密碼</b>，日後修改表單時將使用此密碼。</p>
+                    {% endblock %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    {% block modal_target %}
+                        <button type="button" class="btn btn-primary" id="send">確認提交</button>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {{ super() }}
+
+    <script>
+        {% if url_send is defined %}
+            const url_send = '{{ url_for(url_send) }}'
+        {% endif %}
+        {% if db_info is defined %}
+            const db_info = JSON.parse('{{ db_info | tojson }}')
+        {% endif %}
+        {% if db_trans is defined %}
+            const db_trans = JSON.parse('{{ db_trans | tojson }}')
+        {% endif %}
+    </script>
+{% endblock %}
