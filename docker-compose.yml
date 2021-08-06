@@ -12,9 +12,8 @@ services:
       - "database:db"
     env_file:
       - config.env
+    entrypoint: ["/bin/sh", "-c"]
     command:
-      - sh
-      - -c
       - |
         python -m pip install -r requirements.txt
         python main.py

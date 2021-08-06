@@ -60,7 +60,7 @@ mysql_conf = {
 # ============================ #
 
 email_sender = {
-    'sender_account': 'nkust.ee.ct@gmail.com',
+    'sender_account': os.environ.get('sender_account'),
     'sender_password': os.environ.get('sender_password')
 }
 
