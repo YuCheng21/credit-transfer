@@ -28,7 +28,6 @@ module.exports = {
         base_admin : path.resolve(__dirname, 'src/js/base-admin.js'),
         _404 : path.resolve(__dirname, 'src/js/404.js'),
         register : path.resolve(__dirname, 'src/js/register.js'),
-        user_verify : path.resolve(__dirname, 'src/js/user-verify.js'),
         user_login : path.resolve(__dirname, 'src/js/user-login.js'),
     },
     resolve: {
@@ -214,11 +213,6 @@ module.exports = {
             template: './src/template/register.html',
             filename: 'template/register.html',
             chunks: ['register']
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/template/user-verify.html',
-            filename: 'template/user-verify.html',
-            chunks: ['user_verify']
         }),
         new HtmlWebpackPlugin({
             template: './src/template/user-login.html',

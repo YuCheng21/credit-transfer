@@ -505,17 +505,6 @@ def token_verify():
             return '成功驗證信箱'
 
 
-class UserVerify(MethodView):
-    def get(self):
-        title = '驗證信箱'
-        url_send = 'user_verify'
-        return flask.render_template('./template/user-verify.html', **locals())
-
-
-user_verify_view = UserVerify.as_view('user_verify')
-app.add_url_rule('/user_verify', view_func=user_verify_view, methods=['GET'])
-
-
 class UserLogin(MethodView):
     def get(self):
         title = '登入'

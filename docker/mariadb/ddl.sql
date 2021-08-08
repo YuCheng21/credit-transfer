@@ -65,3 +65,12 @@ CREATE TABLE `admin`
 
 INSERT INTO `credit-transfer`.admin (id, username, password, email, real_name)
 VALUES (1, 'admin', 'admin', 'nkust.ee.ct@gmail.com', '管理員');
+
+-- `credit-transfer`.`user` definition
+
+CREATE TABLE `user` (
+  `mail` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `verify` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`mail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

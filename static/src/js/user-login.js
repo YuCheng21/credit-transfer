@@ -28,13 +28,12 @@ $('#register').click(function () {
 if (typeof (msg_flash) != 'undefined') {
     const row = $('<div class="col-12"></div>')
     const alert = $(`<div><i class="fas fa-exclamation-triangle me-2"></i>${msg_flash}</div>`);
-
     alert.addClass('alert');
-    alert.addClass('alert-danger w-100');
+    alert.addClass('alert-danger');
+    row.append(alert)
 
     $('#mail').addClass('is-invalid')
     $('#pwd').addClass('is-invalid')
-    row.append(alert)
 
     $('#form > div:nth-child(3)').before(row);
 }
