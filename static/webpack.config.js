@@ -26,7 +26,10 @@ module.exports = {
         admin_verify_a : path.resolve(__dirname, 'src/js/admin-verify-a.js'),
         admin_verify_b : path.resolve(__dirname, 'src/js/admin-verify-b.js'),
         base_admin : path.resolve(__dirname, 'src/js/base-admin.js'),
-        asd : path.resolve(__dirname, 'src/js/404.js'),
+        _404 : path.resolve(__dirname, 'src/js/404.js'),
+        register : path.resolve(__dirname, 'src/js/register.js'),
+        user_verify : path.resolve(__dirname, 'src/js/user-verify.js'),
+        user_login : path.resolve(__dirname, 'src/js/user-login.js'),
     },
     resolve: {
         alias: {
@@ -205,7 +208,22 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/template/404.html',
             filename: 'template/404.html',
-            chunks: ['asd']
+            chunks: ['_404']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/template/register.html',
+            filename: 'template/register.html',
+            chunks: ['register']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/template/user-verify.html',
+            filename: 'template/user-verify.html',
+            chunks: ['user_verify']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/template/user-login.html',
+            filename: 'template/user-login.html',
+            chunks: ['user_login']
         }),
         new MiniCssExtractPlugin({
             filename: 'css/all.css'

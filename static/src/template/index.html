@@ -11,7 +11,11 @@
 {% endblock %}
 
 {% block navitem %}
-
+    <div class="d-block text-end">
+        <a href="{{ url_for('user_logout') }}"
+           class="fs-4 text-decoration-none btn btn-danger border border-dark me-1">登出
+        </a>
+    </div>
 {% endblock %}
 
 

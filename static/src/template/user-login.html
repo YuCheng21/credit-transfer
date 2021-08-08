@@ -1,0 +1,55 @@
+{% extends "template/base.html" %}
+
+{% block content %}
+    <main class="container py-3 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card border-secondary">
+                    <div class="card-header bg-secondary">
+                        <h1 class="text-center fw-bold text-white w-100 ds-100 mb-0">登入</h1>
+                    </div>
+                    <div class="card-body">
+                        <form class="row gy-3" action="" id="form" method="post" enctype="multipart/form-data">
+                            <div class="col-12">
+                                <div class="input-group input-group-lg">
+                                    <label for="mail" class="input-group-text">信箱</label>
+                                    <input id="mail" name="mail" type="text" class="form-control"
+                                           placeholder="請輸入學校信箱">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group input-group-lg">
+                                    <label for="pwd" class="input-group-text">密碼</label>
+                                    <input id="pwd" name="pwd" type="password" class="form-control" placeholder="請輸入密碼">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary btn-lg w-100 border border-dark" type="button" id="send">送出</button>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-warning btn-lg w-100 border border-dark" type="button" id="register">註冊</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block footer %}
+    <script>
+        const url_send = '{{ url_for(url_send)}}';
+        const url_register = '{{ url_for(url_register)}}';
+    </script>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    const msg_flash = '{{ message }}';
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}

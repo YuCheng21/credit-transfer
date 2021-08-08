@@ -1,9 +1,11 @@
 from io import BytesIO
 from model.database import Mysql
+from mysql.connector import IntegrityError
 from docx import Document
-from config import mysql_conf, SUCCESS, ERROR, email_sender
+from config import mysql_conf, SUCCESS, ERROR, email_sender, BaseConfig
 import smtplib
 import email.message
+from itsdangerous import TimedJSONWebSignatureSerializer, SignatureExpired
 
 
 def insert(form_data):
@@ -22,7 +24,7 @@ def insert(form_data):
         try:
             cursor.execute(sql)
             db.commit()
-        except :
+        except:
             return ERROR, None
 
         sql = '''
@@ -151,7 +153,6 @@ def fetch_form(form_data):
 
 
 def update_save(form_data, form_id):
-
     status_code = editable({'form-id': form_id})
     if status_code == ERROR:
         return ERROR
@@ -500,3 +501,84 @@ def api_get_stu_id(stu_id):
             course_verify_list.append(trans)
 
     return course_verify_list
+
+
+def registered_user(form_data):
+    with Mysql(mysql_conf) as db:
+        cur = db.cursor(dictionary=True)
+        sql = f'''
+            INSERT INTO `credit-transfer`.user(`mail`, `password`)
+            VALUE (%(mail)s, %(password)s);
+        '''
+        bind = {
+            'mail': form_data['mail'],
+            'password': form_data['pwd']
+        }
+        try:
+            cur.execute(sql, bind)
+        except IntegrityError:
+            sql = f'''
+                        SELECT `verify` FROM `credit-transfer`.`user` WHERE mail='{form_data['mail']}'
+                    '''
+            cur.execute(sql)
+            verify_state = cur.fetchone()['verify']
+            if not verify_state:
+                return 'Send verify mail'
+            elif verify_state:
+                return 'Already have this mail'
+
+        db.commit()
+
+    return SUCCESS
+
+
+def generate_verify_token(form_data):
+    signature = TimedJSONWebSignatureSerializer(BaseConfig().SECRET_KEY, expires_in=600, salt='email')
+    token = signature.dumps({'mail': form_data['mail']})
+    return token
+
+
+def token_verify(token):
+    signature = TimedJSONWebSignatureSerializer(BaseConfig().SECRET_KEY, salt='email')
+    try:
+        data = signature.loads(token)
+    except SignatureExpired:
+        return 'token expired'
+    mail = dict(data).get('mail')
+    if mail is None and mail == '':
+        return ERROR
+    with Mysql(mysql_conf) as db:
+        cur = db.cursor(dictionary=True)
+        sql = f'''
+            UPDATE `credit-transfer`.`user` SET verify=1 WHERE mail='{mail}';
+        '''
+        cur.execute(sql)
+        db.commit()
+    return SUCCESS
+
+
+def user_login(form_data):
+    with Mysql(mysql_conf) as db:
+        cur = db.cursor(dictionary=True)
+        sql = f'''
+            select mail, password, verify from `credit-transfer`.`user` where mail=%(mail)s; 
+        '''
+        bind = {
+            'mail': form_data['mail']
+        }
+        try:
+            cur.execute(sql, bind)
+        except Exception as e:
+            print(e)
+            return ERROR
+        else:
+            results = cur.fetchone()
+            if results is None:
+                return ERROR
+            elif results['password'] == form_data['pwd']:
+                if results['verify'] == 1:
+                    return SUCCESS
+                elif results['verify'] == 0:
+                    return ERROR
+            else:
+                return ERROR

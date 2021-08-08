@@ -1,20 +1,33 @@
 let infoModal = new bootstrap.Modal($('#infoModal'));
+let liveToast = new bootstrap.Toast($('#liveToast'));
 
 function submit_from() {
     const pwd = $('#pwd');
     const pwd_confirm = $('#pwd-confirm');
+    const stu_name = $('#stu-name')
+    const stu_id = $('#stu-id')
+    const stu_tel = $('#stu-tel')
     if (pwd.val() != "" && pwd.val() === pwd_confirm.val()) {
-        var form = $('#form');
-        var field = $('<input></input>');
-        field.attr('type', 'hidden');
-        field.attr('name', pwd.attr('name'));
-        field.attr('value', pwd.val())
-        form.append(field)
-        $('#form').submit()
+        if (stu_name.val() != "" && stu_id.val() != "" && stu_tel.val() != "") {
+            var form = $('#form');
+            var field = $('<input></input>');
+            field.attr('type', 'hidden');
+            field.attr('name', pwd.attr('name'));
+            field.attr('value', pwd.val())
+            form.append(field)
+            $('#form').submit()
 
-        const loading = $('<div class="loading">Loading&#8230;</div>');
-        $('body').prepend(loading);
-        infoModal.hide()
+            const loading = $('<div class="loading">Loading&#8230;</div>');
+            $('body').prepend(loading);
+            infoModal.hide()
+        } else {
+            stu_name.addClass('is-invalid')
+            stu_id.addClass('is-invalid')
+            stu_tel.addClass('is-invalid')
+            infoModal.hide()
+            liveToast.show()
+        }
+
     } else {
         pwd.addClass('is-invalid')
         pwd_confirm.addClass('is-invalid')
