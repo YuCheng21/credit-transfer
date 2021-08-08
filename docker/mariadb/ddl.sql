@@ -25,7 +25,7 @@ CREATE TABLE `form`
     `editable`            tinyint(1)                    NOT NULL DEFAULT 1,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 89
+  AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
 -- `credit-transfer`.course_transform definition
@@ -60,7 +60,7 @@ CREATE TABLE `admin`
     PRIMARY KEY (`id`),
     UNIQUE KEY `admin_un` (`username`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 4
+  AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
 
 INSERT INTO `credit-transfer`.admin (id, username, password, email, real_name)

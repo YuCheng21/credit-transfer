@@ -11,10 +11,11 @@ services:
     links:
       - "database:db"
     env_file:
-      - config.env
+      - ./docker/config.env
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
+        python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
         python main.py
   database:
@@ -27,7 +28,7 @@ services:
       - "./docker/mariadb/data.sql:/docker-entrypoint-initdb.d/2.sql"
       - "./docker/mariadb/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf"
     env_file:
-      - config.env
+      - ./docker/config.env
     command:
       - mysqld
       - --character-set-server=utf8

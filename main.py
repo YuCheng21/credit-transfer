@@ -473,7 +473,9 @@ class Register(MethodView):
                 api.send_mail(target_account=account, msg_subject=subject, msg_content_html=content_html)
             except:
                 app.logger.error('Send e-mail failed')
-            message = '提交註冊申請成功，請前往信箱查看驗證信件，並點選【驗證帳號】連結來驗證您的帳號。'
+                message = '驗證信寄送失敗，請洽網站管理員。'
+            else:
+                message = '提交註冊申請成功，請前往信箱查看驗證信件，並點選【驗證帳號】連結來驗證您的帳號。'
             if status_code == 'Send verify mail':
                 message = '該信箱已註冊過，尚未完成驗證，請前往信箱點擊驗證連結來驗證帳號。'
             return msg(title='驗證信箱', message=message)
