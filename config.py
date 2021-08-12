@@ -22,8 +22,8 @@ class BaseConfig:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     JSON_AS_ASCII = False
     UPLOAD_FOLDER = os.path.abspath('./upload')
-    SESSION_REFRESH_EACH_REQUEST = True
-    PERMANENT_SESSION_LIFETIME = datetime.timedelta(minutes=30)
+    # SESSION_REFRESH_EACH_REQUEST = True
+    # PERMANENT_SESSION_LIFETIME = datetime.timedelta(minutes=30)
     # SERVER_NAME = 'localhost:5000'
 
 

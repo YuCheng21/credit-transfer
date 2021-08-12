@@ -23,6 +23,8 @@ services:
     restart: always
     expose:
       - '3306'
+    ports:
+    - '20021:3306'
     volumes:
       - "./docker/mariadb/ddl.sql:/docker-entrypoint-initdb.d/1.sql"
       - "./docker/mariadb/data.sql:/docker-entrypoint-initdb.d/2.sql"
