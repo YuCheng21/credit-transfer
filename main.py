@@ -112,7 +112,6 @@ def submit_create():
 
 
 @app.route('/transcript/<file_name>')
-@user_login_required
 def transcript(file_name):
     form_id = flask.session.get('form_id')
     if str(form_id) + '.pdf' == file_name:
@@ -521,6 +520,7 @@ class UserLogin(MethodView):
             return flask.redirect(flask.url_for('user_login'))
         elif status_code is config.SUCCESS:
             flask.session['mail'] = form_data['mail']
+            update_session()
             return flask.redirect(flask.url_for('index'))
         flask.abort(404)
 
@@ -534,6 +534,11 @@ app.add_url_rule('/user-login', view_func=user_login_view, methods=['POST'])
 def user_logout():
     flask.session.pop('mail', None)
     return flask.redirect(flask.url_for('user_login'))
+
+
+def update_session():
+    flask.permanent = True
+    flask.modified = True
 
 
 if __name__ == '__main__':
