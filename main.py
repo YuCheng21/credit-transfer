@@ -416,13 +416,6 @@ def err_handler(e):
     return flask.render_template('./template/404.html', **locals())
 
 
-# @app.route('/register')
-# def register():
-#     title = '註冊'
-#     url_send = 'index'
-#     return flask.render_template('./template/register.html', **locals())
-
-
 class Register(MethodView):
     def get(self):
         title = '註冊'
@@ -431,23 +424,27 @@ class Register(MethodView):
 
     def post(self):
         form_data = flask.request.values.to_dict()
+        username = flask.session.get('username')
         try:
             mail_account, mail_domain = form_data['mail'].split('@')
         except:
             return msg(title='無效的信箱', message='該信箱格式不正確。', danger=True)
-        ALLOW_DOMAIN = 'nkust.edu.tw'
-        if mail_domain != ALLOW_DOMAIN:
-            return msg(title='無效的信箱', message='該信箱並非高雄科技大學信箱。', danger=True)
-        if len(mail_account) < 10:
-            return msg(title='無效的信箱', message='該信箱並非電機系信箱。', danger=True)
-        ALLOW_ACCOUNT = [{'index': [5, 6], 'value': [0, 4]},
-                         {'index': [5, 6], 'value': [5, 4]}]
-        for key, value in enumerate(ALLOW_ACCOUNT):
-            if mail_account[value['index'][0]] == str(value['value'][0]) and \
-                    mail_account[value['index'][1]] == str(value['value'][1]):
-                break
-        else:
-            return msg(title='無效的信箱', message='該信箱並非電機系信箱，若為轉系生請至系辦人工申請表單。', danger=True)
+
+        if username is None:
+            ALLOW_DOMAIN = 'nkust.edu.tw'
+            if mail_domain != ALLOW_DOMAIN:
+                return msg(title='無效的信箱', message='該信箱並非高雄科技大學信箱。', danger=True)
+            if len(mail_account) < 10:
+                return msg(title='無效的信箱', message='該信箱並非電機系信箱。', danger=True)
+            ALLOW_ACCOUNT = [{'index': [5, 6], 'value': [0, 4]},
+                             {'index': [5, 6], 'value': [5, 4]}]
+            for key, value in enumerate(ALLOW_ACCOUNT):
+                if mail_account[value['index'][0]] == str(value['value'][0]) and \
+                        mail_account[value['index'][1]] == str(value['value'][1]):
+                    break
+            else:
+                return msg(title='無效的信箱', message='該信箱並非電機系信箱，若為轉系生請至系辦人工申請表單。', danger=True)
+
         status_code = api.registered_user(form_data)
         if status_code is config.ERROR:
             flask.abort(404)
@@ -537,8 +534,8 @@ def user_logout():
 
 
 def update_session():
-    flask.permanent = True
-    flask.modified = True
+    flask.session.permanent = True
+    flask.session.modified = True
 
 
 if __name__ == '__main__':

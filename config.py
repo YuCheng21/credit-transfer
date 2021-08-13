@@ -6,14 +6,14 @@ import datetime
 # ============================ #
 
 # Server Setting
-# setting = {
-#     'mode': 'development',
-#     'port': 5000
-# }
 setting = {
-    'mode': 'deployment',
-    'port': 8080
+    'mode': 'development',
+    'port': 5000
 }
+# setting = {
+#     'mode': 'deployment',
+#     'port': 8080
+# }
 
 
 # Flask Config
