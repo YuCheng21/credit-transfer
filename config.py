@@ -8,7 +8,7 @@ import datetime
 # Server Setting
 # setting = {
 #     'mode': 'development',
-#     'port': 8000
+#     'port': 8080
 # }
 setting = {
     'mode': 'deployment',
