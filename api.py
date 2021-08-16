@@ -6,6 +6,20 @@ from config import mysql_conf, SUCCESS, ERROR, email_sender, BaseConfig
 import smtplib
 import email.message
 from itsdangerous import TimedJSONWebSignatureSerializer, SignatureExpired
+import re
+import json
+
+
+def trans_normalize(text):
+    regex = r'\s'
+    key = list(map(lambda x: list(x.keys()), text))
+    value = list(map(lambda x: (lambda y: list(map(lambda text: re.sub(regex, '', text), y)))(list(x.values())), text))
+    results = list(map(lambda x, y: dict(zip(x, y)), key, value))
+    return results
+
+
+def to_pretty_json(value):
+    return re.escape(json.dumps(value, ensure_ascii=False))
 
 
 def insert(form_data):
@@ -148,7 +162,7 @@ def fetch_form(form_data):
         '''
         cursor.execute(sql)
         trans = cursor.fetchall()
-
+    # trans = trans_normalize(trans)
     return SUCCESS, info, trans
 
 

@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log('ok')
     $('#stu-name').attr('disabled', true);
     $('#stu-id').attr('disabled', true);
     $('#stu-tel').attr('disabled', true);

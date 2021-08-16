@@ -342,10 +342,10 @@
             const url_send = '{{ url_for(url_send) }}'
         {% endif %}
         {% if db_info is defined %}
-            const db_info = JSON.parse('{{ db_info | tojson }}')
+            const db_info = JSON.parse('{{ db_info | tojson_pretty | safe }}')
         {% endif %}
         {% if db_trans is defined %}
-            const db_trans = JSON.parse('{{ db_trans | tojson }}')
+            const db_trans = JSON.parse('{{ db_trans | tojson_pretty | safe }}')
         {% endif %}
     </script>
 {% endblock %}

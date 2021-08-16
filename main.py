@@ -9,6 +9,7 @@ app.config.from_object(config.flask[config.setting['mode']])
 app.template_folder = os.path.abspath('./static/dist')
 app.static_folder = os.path.abspath('./static')
 
+app.jinja_env.filters['tojson_pretty'] = api.to_pretty_json
 
 def user_login_required(func):
     def wrapper(*args, **kwds):
@@ -278,8 +279,7 @@ def submit_delete():
 def admin_login_required(func):
     def wrapper(*args, **kwds):
         username = flask.session.get('username')
-        pwd = flask.session.get('pwd')
-        if None in (username, pwd):
+        if username is None:
             return flask.redirect(flask.url_for('admin_login'))
 
         return func(*args, **kwds)
@@ -517,7 +517,6 @@ class UserLogin(MethodView):
             return flask.redirect(flask.url_for('user_login'))
         elif status_code is config.SUCCESS:
             flask.session['mail'] = form_data['mail']
-            update_session()
             return flask.redirect(flask.url_for('index'))
         flask.abort(404)
 
@@ -536,6 +535,30 @@ def user_logout():
 def update_session():
     flask.session.permanent = True
     flask.session.modified = True
+
+
+# @app.before_request
+# def before_request():
+#     print('========================')
+#     print('before request started')
+#     print("mail: ", flask.session.get('mail'))
+#     print('username: ', flask.session.get('username'))
+#     if flask.session.get('mail') is None:
+#         app.logger.error('error: mail')
+#     if flask.session.get('username') is None:
+#         app.logger.error('error: username')
+#
+#
+# @app.after_request
+# def after_request(response):
+#     print('after request finished')
+#     print("mail: ", flask.session.get('mail'))
+#     print('username: ', flask.session.get('username'))
+#     if flask.session.get('mail') is None:
+#         app.logger.error('error: mail')
+#     if flask.session.get('username') is None:
+#         app.logger.error('error: username')
+#     return response
 
 
 if __name__ == '__main__':
