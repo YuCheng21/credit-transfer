@@ -386,7 +386,6 @@ def admin_login():
 @app.route('/admin-logout')
 def admin_logout():
     flask.session.pop('username', None)
-    flask.session.pop('pwd', None)
     return flask.redirect(flask.url_for('admin'))
 
 
@@ -399,7 +398,7 @@ def admin_login_verify():
         return flask.redirect(flask.url_for('admin_login'))
     elif status_code is config.SUCCESS:
         flask.session['username'] = form_data['username']
-        flask.session['pwd'] = form_data['pwd']
+        flask.session.permanent = True
         return flask.redirect(flask.url_for('admin'))
 
 
@@ -517,6 +516,7 @@ class UserLogin(MethodView):
             return flask.redirect(flask.url_for('user_login'))
         elif status_code is config.SUCCESS:
             flask.session['mail'] = form_data['mail']
+            flask.session.permanent = True
             return flask.redirect(flask.url_for('index'))
         flask.abort(404)
 

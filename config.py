@@ -23,6 +23,7 @@ class BaseConfig:
     UPLOAD_FOLDER = os.path.abspath('./upload')
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(minutes=30)
     SESSION_REFRESH_EACH_REQUEST = True
+    SESSION_COOKIE_NAME = 'ct-session'
 
 
 class DevelopmentConfig(BaseConfig):
