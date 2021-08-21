@@ -547,7 +547,7 @@ def registered_user(form_data):
 
 
 def generate_verify_token(form_data):
-    signature = TimedJSONWebSignatureSerializer(BaseConfig().SECRET_KEY, expires_in=600, salt='email')
+    signature = TimedJSONWebSignatureSerializer(BaseConfig().SECRET_KEY, expires_in=3600, salt='email')
     token = signature.dumps({'mail': form_data['mail']})
     return token
 

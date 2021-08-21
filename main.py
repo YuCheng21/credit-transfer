@@ -532,35 +532,6 @@ def user_logout():
     return flask.redirect(flask.url_for('user_login'))
 
 
-def update_session():
-    flask.session.permanent = True
-    flask.session.modified = True
-
-
-# @app.before_request
-# def before_request():
-#     print('========================')
-#     print('before request started')
-#     print("mail: ", flask.session.get('mail'))
-#     print('username: ', flask.session.get('username'))
-#     if flask.session.get('mail') is None:
-#         app.logger.error('error: mail')
-#     if flask.session.get('username') is None:
-#         app.logger.error('error: username')
-#
-#
-# @app.after_request
-# def after_request(response):
-#     print('after request finished')
-#     print("mail: ", flask.session.get('mail'))
-#     print('username: ', flask.session.get('username'))
-#     if flask.session.get('mail') is None:
-#         app.logger.error('error: mail')
-#     if flask.session.get('username') is None:
-#         app.logger.error('error: username')
-#     return response
-
-
 if __name__ == '__main__':
     if config.setting['mode'] == 'development':
         app.run(host='0.0.0.0', port=config.setting['port'])
