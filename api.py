@@ -483,17 +483,13 @@ def form_download(db_info, db_trans, db_admin):
 
 
 def api_get_stu_id(stu_id):
-    try:
-        stu_id = int(stu_id)
-    except:
-        return ERROR
     with Mysql(mysql_conf) as db:
         cursor = db.cursor(dictionary=True)
         sql = f'''
             SELECT id, `type`, stu_name, stu_id, stu_tel, edu_sys, campus, department, grade, class, stu_type,
             stu_type_school, stu_type_department, stu_type_other, pwd, file_name, editable 
             FROM `credit-transfer`.form 
-            WHERE stu_id={stu_id};
+            WHERE stu_id='{stu_id}';
         '''
         cursor.execute(sql)
         info = cursor.fetchall()
