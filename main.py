@@ -106,6 +106,23 @@ def submit_create():
             upload_file(form_id)
             flask.session['status_code'] = status_code
             flask.session['form_id'] = form_id
+            status_code, db_admin = api.fetch_admin_info()
+            account = db_admin['email']
+            subject = '收到一件課程抵免表單'
+            content_html = f'''
+                <body>
+                <div style="font-size: larger;">
+                    <h2>管理員您好：</h2>
+                    <p>課程抵免申請系統提交了一件新的申請表單（編號：{form_id}），請您撥空前往審核表單，謝謝。</p>
+                    <h3><a href="{flask.url_for('admin', _external=True)}">點擊前往管理員頁面</a></h3>
+                    <h4>此郵件由<a href="{flask.url_for('index', _external=True)}">【課程抵免申請系統】</a>自動發送，請勿直接回覆。</h4>
+                </div>
+                </body>
+                '''
+            try:
+                api.send_mail(target_account=account, msg_subject=subject, msg_content_html=content_html)
+            except:
+                app.logger.error('Send e-mail failed')
             return flask.redirect(flask.url_for('status_create'))
         elif status_code == config.ERROR:
             flask.flash('表單提交失敗。')
@@ -129,23 +146,6 @@ def status_create():
     title = '提交結果'
     status_code = flask.session.get('status_code')
     form_id = flask.session.get('form_id')
-    status_code, db_admin = api.fetch_admin_info()
-    account = db_admin['email']
-    subject = '收到一件課程抵免表單'
-    content_html = f'''
-    <body>
-    <div style="font-size: larger;">
-        <h2>管理員您好：</h2>
-        <p>課程抵免申請系統提交了一件新的申請表單（編號：{form_id}），請您撥空前往審核表單，謝謝。</p>
-        <h3><a href="{flask.url_for('admin', _external=True)}">點擊前往管理員頁面</a></h3>
-        <h4>此郵件由<a href="{flask.url_for('index', _external=True)}">【課程抵免申請系統】</a>自動發送，請勿直接回覆。</h4>
-    </div>
-    </body>
-    '''
-    try:
-        api.send_mail(target_account=account, msg_subject=subject, msg_content_html=content_html)
-    except:
-        app.logger.error('Send e-mail failed')
     return flask.render_template('./template/status-create.html', **locals())
 
 
