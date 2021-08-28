@@ -1,5 +1,14 @@
 $(document).ready(function () {
     $('#form').attr('action', url_send)
+    new bootstrap.Modal($('#instructionsModal'));
+
+})
+var instructionsModal = document.getElementById('instructionsModal')
+instructionsModal.addEventListener('hide.bs.modal', function () {
+    $('video').each(function () {
+        this.pause();
+        this.currentTime = 0;
+    });
 })
 
 $('#send').click(function () {
@@ -37,3 +46,4 @@ if (typeof (msg_flash) != 'undefined') {
 
     $('#form > div:nth-child(3)').before(row);
 }
+

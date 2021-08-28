@@ -16,6 +16,9 @@
                 data-bs-toggle="modal" data-bs-target="#infoModal">
             <span>{{ db_admin['real_name'] }}</span>
         </button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#instructionsModal"
+                class="fs-4 text-decoration-none btn btn-warning border border-dark me-1">使用說明
+        </button>
         <a href="{{ url_for('admin_logout') }}"
            class="fs-4 text-white text-decoration-none btn btn-danger border border-dark">登出
         </a>
@@ -98,6 +101,22 @@
                     <button type="submit" class="btn btn-primary" id="send">確認提交</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="instructionsModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">使用說明</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video controls width="100%" height="auto" style="text-align: center;">
+                        <source src="{{ url_for('static',filename='src/video/admin.mp4') }}">
+                    </video>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

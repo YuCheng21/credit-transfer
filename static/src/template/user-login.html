@@ -4,6 +4,18 @@
     {{ title }}
 {% endblock %}
 
+{% block navitem %}
+    <div class="d-block text-end">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#instructionsModal"
+                class="fs-4 text-decoration-none btn btn-warning border border-dark me-1">使用說明
+        </button>
+    </div>
+{% endblock %}
+
+{% block navbar %}
+    {{ super() }}
+{% endblock %}
+
 {% block content %}
     <main class="container py-3 d-flex align-items-center justify-content-center">
         <div class="row justify-content-center">
@@ -28,10 +40,14 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary btn-lg w-100 border border-dark" type="button" id="send">送出</button>
+                                <button class="btn btn-primary btn-lg w-100 border border-dark" type="button" id="send">
+                                    送出
+                                </button>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-warning btn-lg w-100 border border-dark" type="button" id="register">註冊</button>
+                                <button class="btn btn-warning btn-lg w-100 border border-dark" type="button"
+                                        id="register">註冊
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -39,6 +55,22 @@
             </div>
         </div>
     </main>
+
+    <div class="modal" tabindex="-1" role="dialog" id="instructionsModal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">使用說明</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video controls width="100%" height="auto" style="text-align: center;">
+                        <source src="{{ url_for('static',filename='src/video/user.mp4') }}">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block footer %}
