@@ -16,6 +16,10 @@
                 data-bs-toggle="modal" data-bs-target="#infoModal">
             <span>{{ db_admin['real_name'] }}</span>
         </button>
+        <button class="fs-4 btn btn-warning border border-dark me-1" type="button"
+                data-bs-toggle="modal" data-bs-target="#passwdModal">
+            <span>修改密碼</span>
+        </button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#instructionsModal"
                 class="fs-4 text-decoration-none btn btn-warning border border-dark me-1">使用說明
         </button>
@@ -99,6 +103,42 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-primary" id="send">確認提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="passwdModal" tabindex="-1">
+        <div class="modal-dialog">
+            <form class="modal-content" id="form-pwd" method="post" enctype="multipart/form-data"
+                  action="{{ url_for('admin_passwd_submit') }}">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-info-circle me-2"></i><span>修改密碼</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gy-2">
+                        <div class="col-12">
+                            <div class="input-group input-group-lg">
+                                <label for="passwd" class="input-group-text">密碼</label>
+                                <input id="passwd" name="passwd" type="text" class="form-control"
+                                       placeholder="輸入新密碼" value="">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group input-group-lg">
+                                <label for="confirm-passwd" class="input-group-text">確認密碼</label>
+                                <input id="confirm-passwd" name="confirm-passwd" type="text" class="form-control"
+                                       placeholder="確認密碼" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="send-passwd">確認提交</button>
                 </div>
             </form>
         </div>

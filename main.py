@@ -306,6 +306,14 @@ def admin_info_submit():
     return flask.redirect(flask.url_for('admin'))
 
 
+@app.route('/admin-passwd-submit', methods=['POST'])
+@admin_login_required
+def admin_passwd_submit():
+    form_data = flask.request.values.to_dict()
+    status_code = api.admin_passwd_submit(form_data)
+    return flask.redirect(flask.url_for('admin'))
+
+
 @app.route('/admin-fetch/<form_id>')
 @admin_login_required
 def admin_fetch(form_id):

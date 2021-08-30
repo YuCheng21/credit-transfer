@@ -1,7 +1,7 @@
 let infoModal = new bootstrap.Modal($('#infoModal'));
 let liveToast = new bootstrap.Toast($('#liveToast'));
 
-function submit_from() {
+function submit_form() {
     const pwd = $('#pwd');
     const pwd_confirm = $('#pwd-confirm');
     const stu_name = $('#stu-name')
@@ -35,7 +35,7 @@ function submit_from() {
 }
 
 $('#send').click(function () {
-    submit_from();
+    submit_form();
 
     // /* 使用 post() 函數方法提交表單內容，但在此處必須使用 formData 提交「file」，因此不使用該方法。 */
     // function post(path, parameters) {
@@ -76,7 +76,7 @@ $('#send').click(function () {
 $('#pwd, #pwd-confirm').keypress(function (e) {
     const KEY_ENTER = 13
     if (e.which === KEY_ENTER) {
-        submit_from();
+        submit_form();
     }
 })
 

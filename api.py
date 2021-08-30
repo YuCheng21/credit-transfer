@@ -292,6 +292,19 @@ def admin_info_submit(form_data):
     return SUCCESS
 
 
+def admin_passwd_submit(form_data):
+    with Mysql(mysql_conf) as db:
+        cursor = db.cursor(dictionary=True)
+        sql = f'''
+            UPDATE `credit-transfer`.admin
+            SET password='{form_data['passwd']}'
+            WHERE id=1;
+        '''
+        cursor.execute(sql)
+        db.commit()
+    return SUCCESS
+
+
 def fetch_admin_info():
     with Mysql(mysql_conf) as db:
         cursor = db.cursor(dictionary=True)
