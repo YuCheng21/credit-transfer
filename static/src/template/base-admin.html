@@ -2,7 +2,7 @@
 
 
 {% block navbar %}
-    <nav class="navbar navbar-dark bg-admin ds-900">
+    <nav class="navbar navbar-dark bg-admin ds-900 navbar-expand-lg">
         <div class="container">
             <a href="{{ url_for('admin') }}" class="navbar-brand d-flex align-items-center ds-100 py-0 hv-scale">
                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -23,12 +23,15 @@
                     課程抵免申請系統
                 </span>
             </a>
-            {% block navitem %}
-                <div class="d-block text-end">
-                    <a href="{{ url_for('admin_logout') }}"
-                       class="fs-4 text-white text-decoration-none btn btn-danger">登出</a>
-                </div>
-            {% endblock %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
+                {% block navitem %}
+
+                {% endblock %}
+            </div>
         </div>
     </nav>
 {% endblock %}
