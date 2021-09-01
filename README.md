@@ -15,7 +15,7 @@ cd static
 npm run deploy
 ```
 
-接著使用 Docker 建立容器啟動系統。
+編輯 `/docker/config.env`，設定啟動容器所需的環境變數。接著使用 Docker 建立容器啟動系統。
 
 ```bash
 docker-compose up -d
