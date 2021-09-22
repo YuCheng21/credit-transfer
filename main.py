@@ -4,8 +4,8 @@ import os
 import api
 from flask.views import MethodView
 
-mode = 'development'
-# mode = 'production'
+# mode = 'development'
+mode = 'production'
 
 app = flask.Flask(__name__)
 app.config.from_object(config.flask[mode])
@@ -546,6 +546,6 @@ def user_logout():
 if __name__ == '__main__':
     if mode == 'development':
         app.run(host='0.0.0.0', port=80)
-    elif mode == 'deployment':
+    elif mode == 'production':
         from waitress import serve
         serve(app, host='0.0.0.0', port=80)
