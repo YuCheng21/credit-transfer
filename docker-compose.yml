@@ -8,7 +8,6 @@ services:
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime:ro
-      - ./static/:/code/static/
     working_dir: "/code"
     links:
       - "database:db"
