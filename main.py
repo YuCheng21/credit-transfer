@@ -4,8 +4,11 @@ import os
 import api
 from flask.views import MethodView
 
+mode = 'development'
+# mode = 'production'
+
 app = flask.Flask(__name__)
-app.config.from_object(config.flask[config.setting['mode']])
+app.config.from_object(config.flask[mode])
 app.template_folder = os.path.abspath('./static/dist')
 app.static_folder = os.path.abspath('./static')
 
@@ -541,9 +544,8 @@ def user_logout():
 
 
 if __name__ == '__main__':
-    if config.setting['mode'] == 'development':
-        app.run(host='0.0.0.0', port=config.setting['port'])
-    elif config.setting['mode'] == 'deployment':
+    if mode == 'development':
+        app.run(host='0.0.0.0', port=80)
+    elif mode == 'deployment':
         from waitress import serve
-
-        serve(app, host='0.0.0.0', port=config.setting['port'])
+        serve(app, host='0.0.0.0', port=80)

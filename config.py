@@ -5,18 +5,6 @@ import datetime
 #           flask              #
 # ============================ #
 
-# Server Setting
-# setting = {
-#     'mode': 'development',
-#     'port': 8080
-# }
-setting = {
-    'mode': 'deployment',
-    'port': 8080
-}
-
-
-# Flask Config
 class BaseConfig:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     JSON_AS_ASCII = False
@@ -30,13 +18,13 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
 
 
-class DeploymentConfig(BaseConfig):
+class ProductionConfig(BaseConfig):
     DEBUG = False
 
 
 flask = {
     'development': DevelopmentConfig,
-    'deployment': DeploymentConfig
+    'production': ProductionConfig
 }
 
 # Upload Config
