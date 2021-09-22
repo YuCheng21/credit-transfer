@@ -1,6 +1,6 @@
 .idea/
 venv/
-doc/
+testing/
 __pycache__/
 upload/
 static/node_modules
