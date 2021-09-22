@@ -49,7 +49,7 @@ services:
   nginx:
     image: 'nginx'
     ports:
-      - '20020:443'
+      - '20021:443'
       - '20020:80'
     links:
       - 'flask'
