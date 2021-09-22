@@ -4,8 +4,8 @@ import os
 import api
 from flask.views import MethodView
 
-# mode = 'development'
-mode = 'production'
+mode = 'development'
+# mode = 'production'
 
 app = flask.Flask(__name__)
 app.config.from_object(config.flask[mode])
