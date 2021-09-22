@@ -25,8 +25,6 @@
   - db-host : 資料庫的地址
   - secret-key : flask session 的金鑰
 
-- 配置 SSL 證書在 Nginx Server，編輯資料夾 `./docker/nginx/` 中的 `certificate.crt` 與 `private.key`。
-
 - 修改 Flask Server 為 Production 模式，編輯 `./main.py`。
 
     ```python
@@ -42,10 +40,8 @@
 docker-compose up -d
 ```
 
-預設將啟動以下連接埠 :
+預設將不啟動任何對外連接埠，只開啟 flask 容器內部 `80` 連接埠，須測試可透過 SSH Tunnel 開啟對應通道。
 
-- `20010` : HTTP ( 將自動跳轉到 HTTPS )
-- `20011` : HTTPS
 
 ## Project Structure
 

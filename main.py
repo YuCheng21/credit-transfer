@@ -14,6 +14,7 @@ app.static_folder = os.path.abspath('./static')
 
 app.jinja_env.filters['tojson_pretty'] = api.to_pretty_json
 
+
 def user_login_required(func):
     def wrapper(*args, **kwds):
         mail = flask.session.get('mail')
@@ -519,6 +520,7 @@ class UserLogin(MethodView):
         url_send = 'user_login'
         url_register = 'register'
         return flask.render_template('./template/user-login.html', **locals())
+
     def post(self):
         form_data = flask.request.values.to_dict()
         status_code = api.user_login(form_data)
@@ -548,4 +550,5 @@ if __name__ == '__main__':
         app.run(host='0.0.0.0', port=80)
     elif mode == 'production':
         from waitress import serve
+
         serve(app, host='0.0.0.0', port=80)
