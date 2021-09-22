@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime:ro
-      - node_modules:/code/static/
+      - ./static/:/code/static/
     working_dir: "/code"
     links:
       - "database:db"
@@ -23,7 +23,6 @@ services:
     image: node:12.18.4
     volumes:
       - ./static/:/static/
-      - node_modules:/static/
     working_dir: '/static'
     entrypoint: ["/bin/sh", "-c"]
     command:
@@ -58,5 +57,3 @@ services:
       - './docker/nginx/certificate.crt:/etc/ssl/certificate.crt'
       - './docker/nginx/private.key:/etc/ssl/private.key'
       - './docker/nginx/ssl.conf:/etc/nginx/conf.d/snippets/ssl.conf'
-volumes:
-  node_modules:
