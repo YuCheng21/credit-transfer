@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/code
       - /etc/localtime:/etc/localtime:ro
-      - node_modules:/code/static/node_modules
+      - node_modules:/code/static/
     working_dir: "/code"
     links:
       - "database:db"
@@ -22,8 +22,8 @@ services:
   nodejs:
     image: node:12.18.4
     volumes:
-      - ./static/package.json:/static/package.json
-      - node_modules:/static/node_modules
+      - ./static/:/static/
+      - node_modules:/static/
     working_dir: '/static'
     entrypoint: ["/bin/sh", "-c"]
     command:
