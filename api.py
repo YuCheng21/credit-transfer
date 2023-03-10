@@ -89,7 +89,7 @@ def send_mail(**kw):
     msg['Subject'] = kw['msg_subject']
     msg.add_attachment(kw['msg_content_html'], subtype='html')
 
-    with smtplib.SMTP(host='smtp.gmail.com', port=587) as smtp:
+    with smtplib.SMTP(host=email_sender['smtp_host'], port=587) as smtp:
         smtp.ehlo()
         smtp.starttls()
         smtp.login(email_sender['sender_account'], email_sender['sender_password'])
