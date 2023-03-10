@@ -47,7 +47,7 @@ mysql_conf = {
 
 email_sender = {
     'sender_account': os.environ.get('sender_account'),
-    'sender_password': os.environ.get('sender_password')
+    'sender_password': os.environ.get('sender_password'),
     'smtp_host': os.environ.get('smtp_host')
 }
 
